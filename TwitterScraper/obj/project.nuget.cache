@@ -1,0 +1,72 @@
+{
+  "version": 2,
+  "dgSpecHash": "rxeptL2/Abn6OLuzmkQqbeiB0lWs4otm0V1HOaTxq1OjNdfxJCmXAu4jGw5u4qE2+KLTC4FPE0jH7BHOjbnrPQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\eureq\\source\\repos\\TwitterScraper\\TwitterScraper\\TwitterScraper.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\eureq\\.nuget\\packages\\anglesharp\\0.16.1\\anglesharp.0.16.1.nupkg.sha512",
+    "C:\\Users\\eureq\\.nuget\\packages\\core.google.gdata.extensions\\1.0.2\\core.google.gdata.extensions.1.0.2.nupkg.sha512",
+    "C:\\Users\\eureq\\.nuget\\packages\\docker.dotnet\\3.125.5\\docker.dotnet.3.125.5.nupkg.sha512",
+    "C:\\Users\\eureq\\.nuget\\packages\\gdata.spreadsheets.helpers\\2.2.0\\gdata.spreadsheets.helpers.2.2.0.nupkg.sha512",
+    "C:\\Users\\eureq\\.nuget\\packages\\google.apis\\1.55.0\\google.apis.1.55.0.nupkg.sha512",
+    "C:\\Users\\eureq\\.nuget\\packages\\google.apis.auth\\1.55.0\\google.apis.auth.1.55.0.nupkg.sha512",
+    "C:\\Users\\eureq\\.nuget\\packages\\google.apis.core\\1.55.0\\google.apis.core.1.55.0.nupkg.sha512",
+    "C:\\Users\\eureq\\.nuget\\packages\\google.apis.discovery.v1\\1.55.0\\google.apis.discovery.v1.1.55.0.nupkg.sha512",
+    "C:\\Users\\eureq\\.nuget\\packages\\google.apis.sheets.v4\\1.55.0.2371\\google.apis.sheets.v4.1.55.0.2371.nupkg.sha512",
+    "C:\\Users\\eureq\\.nuget\\packages\\google.gdata.client\\2.2.0\\google.gdata.client.2.2.0.nupkg.sha512",
+    "C:\\Users\\eureq\\.nuget\\packages\\google.gdata.client.core\\1.0.2\\google.gdata.client.core.1.0.2.nupkg.sha512",
+    "C:\\Users\\eureq\\.nuget\\packages\\google.gdata.extensions\\2.2.0\\google.gdata.extensions.2.2.0.nupkg.sha512",
+    "C:\\Users\\eureq\\.nuget\\packages\\google.gdata.spreadsheets\\2.2.0\\google.gdata.spreadsheets.2.2.0.nupkg.sha512",
+    "C:\\Users\\eureq\\.nuget\\packages\\microsoft.netcore.platforms\\5.0.0\\microsoft.netcore.platforms.5.0.0.nupkg.sha512",
+    "C:\\Users\\eureq\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
+    "C:\\Users\\eureq\\.nuget\\packages\\system.buffers\\4.5.1\\system.buffers.4.5.1.nupkg.sha512",
+    "C:\\Users\\eureq\\.nuget\\packages\\system.text.encoding.codepages\\5.0.0\\system.text.encoding.codepages.5.0.0.nupkg.sha512",
+    "C:\\Users\\eureq\\.nuget\\packages\\system.threading.channels\\6.0.0\\system.threading.channels.6.0.0.nupkg.sha512",
+    "C:\\Users\\eureq\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512",
+    "C:\\Users\\eureq\\.nuget\\packages\\telegram.bot\\17.0.0\\telegram.bot.17.0.0.nupkg.sha512",
+    "C:\\Users\\eureq\\.nuget\\packages\\telegram.bot.extensions\\1.0.0\\telegram.bot.extensions.1.0.0.nupkg.sha512",
+    "C:\\Users\\eureq\\.nuget\\packages\\telegram.bot.extensions.polling\\1.0.2\\telegram.bot.extensions.polling.1.0.2.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Пакет \"GData.Spreadsheets.Helpers 2.2.0\" был восстановлен с помощью \".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8\", а не целевой платформы проекта \"net6.0\". Этот пакет может быть не полностью совместим с вашим проектом.",
+      "libraryId": "GData.Spreadsheets.Helpers",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Пакет \"Google.GData.Client 2.2.0\" был восстановлен с помощью \".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8\", а не целевой платформы проекта \"net6.0\". Этот пакет может быть не полностью совместим с вашим проектом.",
+      "libraryId": "Google.GData.Client",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Пакет \"Google.GData.Extensions 2.2.0\" был восстановлен с помощью \".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8\", а не целевой платформы проекта \"net6.0\". Этот пакет может быть не полностью совместим с вашим проектом.",
+      "libraryId": "Google.GData.Extensions",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Пакет \"Google.GData.Spreadsheets 2.2.0\" был восстановлен с помощью \".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8\", а не целевой платформы проекта \"net6.0\". Этот пакет может быть не полностью совместим с вашим проектом.",
+      "libraryId": "Google.GData.Spreadsheets",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    }
+  ]
+}
