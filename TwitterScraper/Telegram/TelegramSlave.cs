@@ -10,19 +10,19 @@ using TwitterScraper.GoogleAPI;
 using TwitterScraper.NitterAPI;
 using Telegram.Bot.Extensions.Polling;
 using Telegram.Bot.Exceptions;
+using System.Collections.Concurrent;
 
 namespace TwitterScraper.Telegram
 {
     internal class TelegramSlave : TelegramInterface
     {
-        private static string LastTweet = "";
-        private Dictionary<string, string> CheckingList = new Dictionary<string, string>();
-        private Dictionary<string, string> CheckingListRuntime = new Dictionary<string, string>();
+        private static ConcurrentDictionary<string, string> CheckingList = new ConcurrentDictionary<string, string>();
+
         TablesSlave Slave = new TablesSlave(new GoogleClient());
         bool IsCheckerRunning = false;
         public TelegramBotClient Bot { get; private set; }
 
-        private long ChatId;
+        private static long ChatId;
         public TelegramSlave(string API) 
         {
             Slave = new TablesSlave(new GoogleClient());
@@ -147,18 +147,14 @@ namespace TwitterScraper.Telegram
         public async Task WatchHandler(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
         {
             var Man = update.Message.Text.Split(' ')[1].Replace("https://twitter.com/", "");
-            if (!CheckingListRuntime.Keys.Contains(Man))
-            {
-                CheckingListRuntime.Add(Man, new Nitter.User(Man).GetLastTweet().Link);
-            }
-            this.ChatId = update.Message.Chat.Id;
+            var LastTweet = new TwitterScraper.Nitter.User(Man).GetTweets(1).First();
+            bool IsSucceful;
 
-            if (!IsCheckerRunning)
+            do 
             {
-                Thread Checker = new Thread(new ParameterizedThreadStart(CheckAccountAsync));
-                Checker.Start(botClient);
-                IsCheckerRunning = true;
+                IsSucceful = CheckingList.TryAdd(Man, LastTweet.Link);
             }
+            while (!IsSucceful);
 
             await botClient.SendTextMessageAsync(
                 chatId: ChatId,
@@ -190,18 +186,19 @@ namespace TwitterScraper.Telegram
                 text: "Start Searching",
                 cancellationToken: cancellationToken);
 
-            var SSS = Slave.GetSearching();
+            // Keywords for searching in Twitter
+            var Keywordrs = Slave.GetSearching();
+            // Store for data who will go to google sheets
             var result = new List<string>();
-            foreach (var q in SSS)
+
+            Keywordrs.ForEach(keyword =>
             {
-                var Results = NitterAPI.NitterSlave.SearchToday(q, 10);
-                
-                foreach (var Result in Results) 
+                foreach (var Result in NitterAPI.NitterSlave.SearchToday(keyword, 10))
                 {
-                    if (Result == null) break;
-                    result.Add(Result.Link);
+                    if (Result != null) result.Add(Result.Link);
+                    else break;
                 }
-            }
+            });
             Slave.WriteSearchingResults(result);
 
             await botClient.SendTextMessageAsync(
@@ -209,23 +206,18 @@ namespace TwitterScraper.Telegram
                 text: "Done",
                 cancellationToken: cancellationToken);
         }
-        private async void CheckAccountAsync(object botClient) 
+        private static async void CheckAccountAsync(ITelegramBotClient botClient) 
         {
-            ITelegramBotClient client = botClient as ITelegramBotClient;
             while (true)
             {
-                if (CheckingListRuntime != CheckingList) 
-                {
-                    CheckingList.Clear();
-                    CheckingList = CheckingListRuntime;
-                }
                 foreach (var watcher in CheckingList.Keys)
                 {
-                    Nitter.User user = new Nitter.User(watcher);
-                    var LastPost = user.GetLastTweet().Link;
+                    /* If the last tweet from the user is not the same one that has been stored since it was added to the observation, 
+                     * then notify it in the chat and save the new tweet */
+                    var LastPost = new Nitter.User(watcher).GetLastTweet().Link;
                     if (LastPost != CheckingList[watcher])
                     {
-                        await client.SendTextMessageAsync(
+                        await botClient.SendTextMessageAsync(
                             chatId: ChatId,
                             text: $"{watcher} just posted new tweet {LastPost}",
                             cancellationToken: new CancellationToken());
