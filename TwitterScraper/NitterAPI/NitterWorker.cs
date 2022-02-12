@@ -87,7 +87,7 @@ namespace TwitterScraper.Nitter
         public IEnumerable<Tweet> GetReplyes()
         {
             string URL = NitterWorker.NitterURL + this.Username + "/with_replies";
-            var HTML = "";
+            string HTML;
             try
             {
                 // Download User page HTML as string 
@@ -135,6 +135,8 @@ namespace TwitterScraper.Nitter
 
                 yield return tweet;
 
+                // Get next page URL for catching more tweets
+                // "If Theres no more tweets on this page, get link from "Show more" button and go to her"
                 if (!(i < RawTweet.Count() - 1))
                 {
                     var NextLink = document.GetElementsByClassName("show-more").Last().Children[0].GetAttribute("href").ToString();

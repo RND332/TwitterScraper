@@ -19,7 +19,6 @@ namespace TwitterScraper.Telegram
         private static ConcurrentDictionary<string, string> CheckingList = new ConcurrentDictionary<string, string>();
 
         TablesSlave Slave = new TablesSlave(new GoogleClient());
-        bool IsCheckerRunning = false;
         public TelegramBotClient Bot { get; private set; }
 
         private static long ChatId;
@@ -43,6 +42,7 @@ namespace TwitterScraper.Telegram
         public async Task HandleAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken) 
         {
             Task action = null;
+            // Run endless watcher for users
             Task.Run(async () => CheckAccountAsync(botClient));
             if (update.Message != null && update.Message.Text != null)
             {
@@ -58,7 +58,7 @@ namespace TwitterScraper.Telegram
 
             try
             {
-                if (action != null)await action;
+                if (action != null) await action;
             }
             catch (Exception exception)
             {
