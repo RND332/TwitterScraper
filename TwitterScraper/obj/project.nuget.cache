@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "rxeptL2/Abn6OLuzmkQqbeiB0lWs4otm0V1HOaTxq1OjNdfxJCmXAu4jGw5u4qE2+KLTC4FPE0jH7BHOjbnrPQ==",
+  "dgSpecHash": "25tz6YibFMdKmsX4JHfuuGhA9P0Kgmku6Z30pMBrKenJUG3T/nRKTzEnFVrw5lb1rCeYYz6xOZtk8v6Fy0olqw==",
   "success": true,
   "projectFilePath": "C:\\Users\\eureq\\source\\repos\\TwitterScraper\\TwitterScraper\\TwitterScraper.csproj",
   "expectedPackageFiles": [
@@ -25,7 +25,13 @@
     "C:\\Users\\eureq\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512",
     "C:\\Users\\eureq\\.nuget\\packages\\telegram.bot\\17.0.0\\telegram.bot.17.0.0.nupkg.sha512",
     "C:\\Users\\eureq\\.nuget\\packages\\telegram.bot.extensions\\1.0.0\\telegram.bot.extensions.1.0.0.nupkg.sha512",
-    "C:\\Users\\eureq\\.nuget\\packages\\telegram.bot.extensions.polling\\1.0.2\\telegram.bot.extensions.polling.1.0.2.nupkg.sha512"
+    "C:\\Users\\eureq\\.nuget\\packages\\telegram.bot.extensions.polling\\1.0.2\\telegram.bot.extensions.polling.1.0.2.nupkg.sha512",
+    "C:\\Users\\eureq\\.nuget\\packages\\microsoft.netcore.app.runtime.linux-x64\\6.0.1\\microsoft.netcore.app.runtime.linux-x64.6.0.1.nupkg.sha512",
+    "C:\\Users\\eureq\\.nuget\\packages\\microsoft.netcore.app.host.linux-x64\\6.0.1\\microsoft.netcore.app.host.linux-x64.6.0.1.nupkg.sha512",
+    "C:\\Users\\eureq\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\6.0.1\\microsoft.netcore.app.runtime.win-x64.6.0.1.nupkg.sha512",
+    "C:\\Users\\eureq\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\6.0.1\\microsoft.aspnetcore.app.runtime.win-x64.6.0.1.nupkg.sha512",
+    "C:\\Users\\eureq\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\6.0.1\\microsoft.windowsdesktop.app.runtime.win-x64.6.0.1.nupkg.sha512",
+    "C:\\Users\\eureq\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.linux-x64\\6.0.1\\microsoft.aspnetcore.app.runtime.linux-x64.6.0.1.nupkg.sha512"
   ],
   "logs": [
     {
