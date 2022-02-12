@@ -10,7 +10,7 @@ namespace TwitterScraper.Nitter
         public static string NitterURL = "http://localhost:8080/";
         public void DockerCompose()
         {
-            var cmd = System.Diagnostics.Process.Start("cmd.exe", "/C cd nitter && docker compose up -d");
+            var cmd = System.Diagnostics.Process.Start("cmd.exe", "/C docker compose up -d");
             cmd.WaitForExit();
 
             Console.WriteLine("Done");
