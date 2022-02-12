@@ -22,7 +22,9 @@ namespace SheetsQuickstart
     {
         static void Main(string[] args)
         {
+            // Pull Nitter + Redis via in-build doker-compose file 
             new NitterWorker().DockerCompose();
+            // Run Telegram Bot
             new TelegramSlave(Secret.TelegramKey);
 
             Console.ReadKey();
