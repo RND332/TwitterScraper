@@ -15,24 +15,6 @@ namespace TwitterScraper.GoogleAPI
 {
     internal class GoogleClient : IGoogleInterface 
     {
-        static readonly string[] Scopes = { SheetsService.Scope.Spreadsheets };
-        static readonly string ApplicationName = "RND Twitter Slave";
-
-        /// <summary>
-        /// Api key for accsess to spreadsheets
-        /// </summary>
-        protected string Key;
-
-        /// <summary>
-        /// SpreadSheeID storage
-        /// </summary>
-        protected string SpreadSheetId = "1K8-YjqVAY2d8AzDXCvd5tRwo_FkEfD6-5uscTuTABvA";
-
-        /// <summary>
-        /// All Sheets for this SpreadSheet
-        /// </summary>
-        protected List<string> Sheets = new List<string> { "TEST" };
-
         protected SpreadsheetsResource Spreadsheet;
 
         /// <summary>
@@ -44,9 +26,8 @@ namespace TwitterScraper.GoogleAPI
         {
             try
             {
-                SpreadsheetsResource.GetRequest request = service.Spreadsheets.Get(SpreadSheetId);
+                SpreadsheetsResource.GetRequest request = service.Spreadsheets.Get(Secret.SpreadSheetId);
                 Spreadsheet response = request.Execute();
-                Console.WriteLine(response);
                 List<string> sheets = new List<string>();
 
                 foreach (var sheet in response.Sheets)
@@ -72,7 +53,7 @@ namespace TwitterScraper.GoogleAPI
             try
             {
                 var range = $"{GetSheets()[0]}!A1:A100";
-                var request = service.Spreadsheets.Values.Get(SpreadSheetId, range);
+                var request = service.Spreadsheets.Values.Get(Secret.SpreadSheetId, range);
 
                 var responce = request.Execute();
 
@@ -82,7 +63,7 @@ namespace TwitterScraper.GoogleAPI
                 }
                 else 
                 {
-                    return false;   
+                    return false;
                 }
             }
             catch (Google.GoogleApiException ex) // Catch wrong key/spreadsheet
@@ -124,7 +105,7 @@ namespace TwitterScraper.GoogleAPI
             try
             {
                 var range = $"{TableName}!A1:Z100";
-                var request = service.Spreadsheets.Values.Clear(new ClearValuesRequest(),SpreadSheetId, range);
+                var request = service.Spreadsheets.Values.Clear(new ClearValuesRequest(),Secret.SpreadSheetId, range);
 
                 var responce = request.Execute();
             }
@@ -160,7 +141,7 @@ namespace TwitterScraper.GoogleAPI
                 };
 
                 var batchUpdateRequest =
-                    service.Spreadsheets.BatchUpdate(batchUpdateSpreadsheetRequest, SpreadSheetId);
+                    service.Spreadsheets.BatchUpdate(batchUpdateSpreadsheetRequest, Secret.SpreadSheetId);
 
                 batchUpdateRequest.Execute();
             }
@@ -178,7 +159,7 @@ namespace TwitterScraper.GoogleAPI
             try
             {
                 var range = $"{TableName}!{StartCell}:{EndCell}";
-                var request = service.Spreadsheets.Values.Get(SpreadSheetId, range);
+                var request = service.Spreadsheets.Values.Get(Secret.SpreadSheetId, range);
                 request.MajorDimension = @enum;
 
                 return request.Execute();
@@ -223,14 +204,14 @@ namespace TwitterScraper.GoogleAPI
                     Values = nnn,
                     MajorDimension = Dimension,
                 };
-                var request = service.Spreadsheets.Values.Update(Value, SpreadSheetId, range);
+                var request = service.Spreadsheets.Values.Update(Value, Secret.SpreadSheetId, range);
                 request.ValueInputOption = SpreadsheetsResource.ValuesResource.UpdateRequest.ValueInputOptionEnum.RAW;
 
                 request.Execute();
             }
             catch (Google.GoogleApiException ex) // Catch wrong key/spreadsheet
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine("Wrong key/spreadsheet");
             }
         }
     }

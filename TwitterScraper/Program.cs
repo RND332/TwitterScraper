@@ -14,6 +14,7 @@ using TwitterScraper.Extensions;
 using TwitterScraper.NitterAPI;
 using System.Diagnostics;
 using TwitterScraper.Telegram;
+using TwitterScraper;
 
 namespace SheetsQuickstart
 {
@@ -22,8 +23,8 @@ namespace SheetsQuickstart
         static void Main(string[] args)
         {
             new NitterWorker().DockerCompose();
+            new TelegramSlave(Secret.TelegramKey);
 
-            TelegramSlave telegram = new TelegramSlave();
             Console.ReadKey();
         }
     }

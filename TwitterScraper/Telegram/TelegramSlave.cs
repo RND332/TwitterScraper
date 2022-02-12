@@ -23,10 +23,10 @@ namespace TwitterScraper.Telegram
         public TelegramBotClient Bot { get; private set; }
 
         private long ChatId;
-        public TelegramSlave() 
+        public TelegramSlave(string API) 
         {
             Slave = new TablesSlave(new GoogleClient());
-            Bot = new TelegramBotClient("5245428941:AAHnesR3W1B5JMxt6-t97E3AEBbpt9rJ_Mc");
+            Bot = new TelegramBotClient(API);
 
             using var cts = new CancellationTokenSource();
 
@@ -61,7 +61,7 @@ namespace TwitterScraper.Telegram
             }
             catch (Exception exception)
             {
-                Console.WriteLine(exception);
+                Console.WriteLine("Catched Exception from Telegram: " + exception);
             }
         }
         public static Task HandleErrorAsync(ITelegramBotClient botClient, Exception exception, CancellationToken cancellationToken)
