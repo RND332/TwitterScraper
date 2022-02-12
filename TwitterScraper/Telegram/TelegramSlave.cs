@@ -42,6 +42,7 @@ namespace TwitterScraper.Telegram
         public async Task HandleAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken) 
         {
             Task action = null;
+            ChatId = update.Message.Chat.Id;
             // Run endless watcher for users
             Task.Run(async () => CheckAccountAsync(botClient));
             if (update.Message != null && update.Message.Text != null)
@@ -156,6 +157,7 @@ namespace TwitterScraper.Telegram
                 IsSucceful = CheckingList.TryAdd(Man, LastTweet.Link);
             }
             while (!IsSucceful);
+            ChatId = update.Message.Chat.Id;
 
             await botClient.SendTextMessageAsync(
                 chatId: ChatId,
