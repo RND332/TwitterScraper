@@ -43,6 +43,7 @@ namespace TwitterScraper.Telegram
         public async Task HandleAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken) 
         {
             Task action = null;
+            Task.Run(async () => CheckAccountAsync(botClient));
             if (update.Message != null && update.Message.Text != null)
             {
                 action = update.Message.Text!.Split(' ')[0].Replace("@DTFRNDSSPbot", "").ToLower() switch
@@ -210,18 +211,21 @@ namespace TwitterScraper.Telegram
         {
             while (true)
             {
-                foreach (var watcher in CheckingList.Keys)
+                if (CheckingList.Keys.Count > 0)
                 {
-                    /* If the last tweet from the user is not the same one that has been stored since it was added to the observation, 
-                     * then notify it in the chat and save the new tweet */
-                    var LastPost = new Nitter.User(watcher).GetLastTweet().Link;
-                    if (LastPost != CheckingList[watcher])
+                    foreach (var watcher in CheckingList.Keys)
                     {
-                        await botClient.SendTextMessageAsync(
-                            chatId: ChatId,
-                            text: $"{watcher} just posted new tweet {LastPost}",
-                            cancellationToken: new CancellationToken());
-                        CheckingList[watcher] = LastPost;
+                        /* If the last tweet from the user is not the same one that has been stored since it was added to the observation, 
+                         * then notify it in the chat and save the new tweet */
+                        var LastPost = new Nitter.User(watcher).GetLastTweet().Link;
+                        if (LastPost != CheckingList[watcher])
+                        {
+                            await botClient.SendTextMessageAsync(
+                                chatId: ChatId,
+                                text: $"{watcher} just posted new tweet {LastPost}",
+                                cancellationToken: new CancellationToken());
+                            CheckingList[watcher] = LastPost;
+                        }
                     }
                 }
                 Thread.Sleep(100000);
