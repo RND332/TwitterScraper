@@ -1,6 +1,8 @@
 # TwitterScraper
 Tool for working with Twitter Users/Tweets via Nitter Container, and put them in Google Sheets, with Telegram Bot
-
+---------------
+### Dependencies
+#### 1) Nitter node on localhost:8080
 ---------------
 #### Extensions Folder
 ##### Extensions.cs 
