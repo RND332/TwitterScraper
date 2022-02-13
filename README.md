@@ -3,6 +3,7 @@ Tool for working with Twitter Users/Tweets via Nitter Container, and put them in
 ---------------
 ### Dependencies
 #### 1) Nitter node on localhost:8080
+#### 2) RavenDB on localhost:8100
 ---------------
 #### Extensions Folder
 ##### Extensions.cs 
